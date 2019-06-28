@@ -3,14 +3,17 @@
 namespace SilverStripeContactUsForm;
 
 use Page;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Assets\File;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\OptionsetField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\FieldType\DBBoolean;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+
 /**
  * Defines the CustomLayoutPage page type.
  */
@@ -23,6 +26,8 @@ class CustomLayoutPage extends Page
     private static $description = 'Custom Layout Page with Contact Us Form';
 
     private static $db = [
+        'FormStyle' => 'Varchar(255)',
+        'PageLayout' => 'Varchar(255)',
         'MailFrom' => 'Varchar(255)',
         'MailTo' => 'Varchar(255)',
         'MailSubject' => 'Varchar(255)',
@@ -59,6 +64,8 @@ class CustomLayoutPage extends Page
 
     private static $defaults = [
         'FormEnable' => true,
+        'FormStyle' => '1',
+        'PageLayout' => '1',
         'MailFrom' => 'you@example.com',
         'MailTo' => 'who-will-get-notification@example.com',
         'MailSubject' => 'New contact form inquiry',
@@ -71,7 +78,9 @@ class CustomLayoutPage extends Page
         $fields = parent::getCMSFields();
 
         $fields->addFieldsToTab('Root.ExtraContent', [
-            
+            new OptionsetField( $name = "PageLayout", $title = "Page Layout", $source = array( "1" => "Option 1", "2" => "Option 2", "3" => "Option 3", "4" => "Option 4", "5" => "Option 5<img src='https://www.developer.com/imagesvr_ce/3977/Figure01.png'/>" ), $value = "1" ),
+
+
             TextField::create('ExtraText1', 'Extra Text 1'),
             TextField::create('ExtraText2', 'Extra Text 2'),
             TextField::create('ExtraText3', 'Extra Text 3'),
@@ -91,7 +100,16 @@ class CustomLayoutPage extends Page
 
 
         $fields->addFieldsToTab('Root.FormSettings', [
-            CheckboxField::create('FormEnable', 'Enable Custom Layout Form')->setDescription(''),
+            CheckboxField::create('FormEnable', 'Enable Contact Us Form')->setDescription(''),
+            new DropdownField('FormStyle', 'Form Style', [
+                '1'=>'Vertical with label',
+                '2'=>'Vertical without label',
+                '3'=>'Horizontal with label',
+                '4'=>'Horizontal without label',
+                '5'=>'System Generated - For Dev Test',
+                ]),
+
+
             TextField::create('MailFrom', 'Mail From'),
             TextField::create('MailTo', 'Notify Email')          ->setDescription('This person will get notification after someone submit the form'),
             TextField::create('MailSubject', 'Mail Subject')

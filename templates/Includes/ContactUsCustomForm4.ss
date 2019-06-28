@@ -9,7 +9,7 @@
         class="message "
         style="display: none"
     ></p>
-	ContactUsForm_top_level
+	horizontal without label
     <fieldset>
         <div
             id="ContactUsForm_ContactUsForm_FirstName_Holder"

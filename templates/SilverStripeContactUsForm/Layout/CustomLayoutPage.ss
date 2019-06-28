@@ -4,51 +4,19 @@
         <div class="col-md">
             <h1>$Title</h1>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <% if Action = success %>
-				<h2>$SuccessTitle</h2>
-				$SuccessText
-			<% else_if Action = error %>
-            <div class="message required">$ErrorMessage</div>
-			<% else_if FormEnable %>
-				$ContactUsForm22
-				<% include ContactUsCustomForm %>
-			<% end_if %>
-        </div>
-        <div class="col-md-6">
-            <div class="MainContent">
-				$Content
-			</div>			
-            <div class="ExtraText ExtraText1">
-				$ExtraText1
-			</div>	
-            <div class="ExtraImage ExtraImage1">
-				$ExtraImage1
-			</div>						
-            <div class="ExtraContent ExtraContent1">
-                $ExtraContent1
-			</div>
-            <div class="ExtraText ExtraText2">
-				$ExtraText2
-			</div>	
-			<div class="ExtraImage ExtraImage2">
-				$ExtraImage2
-			</div>			
-            <div class="ExtraContent ExtraContent2">
-				$ExtraContent2
-			</div>
-            <div class="ExtraText ExtraText3">
-				$ExtraText3
-			</div>	
-			<div class="ExtraImage ExtraImage3">
-				$ExtraImage3
-			</div>				
-			<div class="ExtraContent ExtraContent3">
-				$ExtraContent3
-			</div>							
-        </div>
-    </div>
+	</div>
+
+<% if PageLayout =='1' %>
+	<% include CustomLayoutPage1 %>
+<% else_if PageLayout =='2' %>
+	<% include CustomLayoutPage2 %>
+<% else_if PageLayout =='3' %>
+	<% include CustomLayoutPage3 %>
+<% else_if PageLayout =='4' %>
+	<% include CustomLayoutPage4 %>
+<% else %>
+	$CustomLayoutPage1	
+<% end_if %>
+
 </div>
 $showGoogleRecaptcha.RAW
