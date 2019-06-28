@@ -1,0 +1,6 @@
+---
+Name: SilverStripeContactUsForm
+---
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - SilverStripeContactUsForm\ContactUsController
