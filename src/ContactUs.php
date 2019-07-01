@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripeContactUsForm;
+namespace SSCustomPageWithContactUsForm;
 
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DropdownField;

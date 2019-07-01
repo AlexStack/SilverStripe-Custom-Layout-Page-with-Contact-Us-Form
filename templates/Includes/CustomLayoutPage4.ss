@@ -1,56 +1,67 @@
-<h1>$Title - page4</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <% if Action = success %>
-				<h2>$SuccessTitle</h2>
-				$SuccessText
-			<% else_if Action = error %>
-            <div class="message required">$ErrorMessage</div>
-			<% else_if FormEnable %>
-				
-				<% if FormLayout =='1' %>
-					<% include ContactUsCustomForm1 %>
-				<% else_if FormLayout =='2' %>
-					<% include ContactUsCustomForm2 %>
-				<% else_if FormLayout =='3' %>
-					<% include ContactUsCustomForm3 %>
-				<% else_if FormLayout =='4' %>
-					<% include ContactUsCustomForm4 %>
-				<% else %>
-					$ContactUsForm	
-				<% end_if %>
-			<% end_if %>
+<div class="row">
+  <div class="col-md-12 custom-page-content ">
+    <div class="MainContent">
+      $Content
+	</div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 first-card">
+      <div class="card text-left ExtraImage ExtraImage1">
+        <img class="card-img-top" src="$ExtraImage1.URL" alt="" />
+      </div>
+      <div class="card-body">
+        <div class="ExtraText ExtraText1">
+          <h4 class="card-title">
+            $ExtraText1
+          </h4>
         </div>
-        <div class="col-md-6">
-            <div class="MainContent">
-				$Content
-			</div>			
-            <div class="ExtraText ExtraText1">
-				$ExtraText1
-			</div>	
-            <div class="ExtraImage ExtraImage1">
-				$ExtraImage1
-			</div>						
-            <div class="ExtraContent ExtraContent1">
-                $ExtraContent1
-			</div>
-            <div class="ExtraText ExtraText2">
-				$ExtraText2
-			</div>	
-			<div class="ExtraImage ExtraImage2">
-				$ExtraImage2
-			</div>			
-            <div class="ExtraContent ExtraContent2">
-				$ExtraContent2
-			</div>
-            <div class="ExtraText ExtraText3">
-				$ExtraText3
-			</div>	
-			<div class="ExtraImage ExtraImage3">
-				$ExtraImage3
-			</div>				
-			<div class="ExtraContent ExtraContent3">
-				$ExtraContent3
-			</div>							
+        <div class="card-text ExtraContent ExtraContent1">
+          $ExtraContent1
         </div>
+      </div>
     </div>
+    <div class="col-md-4 second-card">
+      <div class="card text-left ExtraImage ExtraImage2">
+        <img class="card-img-top" src="$ExtraImage2.URL" alt="" />
+      </div>
+      <div class="card-body">
+        <div class="ExtraText ExtraText2">
+          <h4 class="card-title">
+            $ExtraText2
+          </h4>
+        </div>
+        <div class="card-text ExtraContent ExtraContent2">
+          $ExtraContent2
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 third-card">
+      <div class="card text-left ExtraImage ExtraImage3">
+        <img class="card-img-top" src="$ExtraImage3.URL" alt="" />
+      </div>
+      <div class="card-body">
+        <div class="ExtraText ExtraText3">
+          <h4 class="card-title">
+            $ExtraText3
+          </h4>
+        </div>
+        <div class="card-text ExtraContent ExtraContent3">
+          $ExtraContent3
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  <% if FormEnable %>
+  <div class="row">
+  <div class="col-md-12 custom-contact-us-form">
+    <% include ContactUsCustomFormCode %>
+  </div>
+  </div>
+  <% end_if %>
+

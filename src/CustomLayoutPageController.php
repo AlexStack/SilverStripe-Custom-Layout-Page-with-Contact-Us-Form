@@ -1,9 +1,10 @@
 <?php
 
-namespace SilverStripeContactUsForm;
+namespace SSCustomPageWithContactUsForm;
 
 use PageController;
 use GoogleRecaptchaToAnyForm\GoogleRecaptcha;
+use Silverstripe\SiteConfig\SiteConfig;
 
 
 class CustomLayoutPageController extends PageController
@@ -16,7 +17,6 @@ class CustomLayoutPageController extends PageController
     public function init()
     {
         parent::init();
-
     }
 
     public function ErrorMessage()
@@ -24,25 +24,36 @@ class CustomLayoutPageController extends PageController
         return 'Woops, Something went wrong with the submission. Please contact us or try again later.';
     }
 
-    public function showGoogleRecaptcha()   {
-        if ( !$this->GoogleRecaptchaEnable ){
+    public function showGoogleRecaptcha()
+    {
+        if (!$this->GoogleRecaptchaEnable) {
             return '<!-- GoogleRecaptcha not enable for this page! -->';
         }
-        if ( strlen($this->GoogleRecaptchaSiteKey) < 20 ) {
-            // check the site_key from mysite.xml
+        $siteKey = $this->GoogleRecaptchaSiteKey;
 
-            // no site key
-            return '<!-- GoogleRecaptchaSiteKey not set up yet! -->';
+        if (strlen($siteKey) < 20) {
+            // check the site_key from mysite.xml
+            
+            $config = SiteConfig::current_site_config();
+            if ( strlen($config->GoogleRecaptchaSiteKey)>20 ){
+                $siteKey = $config->GoogleRecaptchaSiteKey; 
+            } else {
+                // no site key
+                return '<!-- GoogleRecaptchaSiteKey not set up yet! -->';
+            }
         }
-        return GoogleRecaptcha::show($this->GoogleRecaptchaSiteKey, 'CustomLayoutForm_CustomLayoutForm_Message', 'no_debug', $this->GoogleRecaptchaCssClass, $this->GoogleRecaptchaNoTickMsg);
-    }  
-    
-    function loadCustomTemplate() {
+        return GoogleRecaptcha::show($siteKey, 'ContactUsForm_ContactUsForm_Message', 'no_debug', $this->GoogleRecaptchaCssClass, $this->GoogleRecaptchaNoTickMsg);
+    }
+
+    function loadCustomTemplate()
+    {
         $str = '';
-        $ssFile = trim(str_replace('.ss','', $this->PageLayoutFilename));
-        if ( $ssFile != ''){
-          $str = '' . $this->renderWith('Includes/'.$ssFile);
+        $ssFile = trim(str_replace('.ss', '', $this->PageLayoutFilename));
+        if ($ssFile != '') {
+            $str = '' . $this->renderWith('Includes/' . $ssFile);
         }
         return $str;
-   }    
+    }
+
+
 }

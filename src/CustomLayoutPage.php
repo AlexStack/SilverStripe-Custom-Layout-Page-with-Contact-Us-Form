@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripeContactUsForm;
+namespace SSCustomPageWithContactUsForm;
 
 use Page;
 use SilverStripe\Assets\Image;
@@ -46,7 +46,7 @@ class CustomLayoutPage extends Page
         'ExtraContent3' => 'HTMLText',
         'ExtraText1' => 'Text',
         'ExtraText2' => 'Text',
-        'ExtraText3' => 'Text',     
+        'ExtraText3' => 'Text',
     ];
 
     private static $has_one = [
@@ -60,19 +60,21 @@ class CustomLayoutPage extends Page
 
     private static $table_name = 'SSC_CustomLayoutPage';
 
-    private static $owns = ['ExtraImage1','ExtraImage2','ExtraImage3','ExtraFile1','ExtraFile2','ExtraFile3'];
+    private static $owns = ['ExtraImage1', 'ExtraImage2', 'ExtraImage3', 'ExtraFile1', 'ExtraFile2', 'ExtraFile3'];
 
     private static $default_sort = 'ID DESC';
 
     private static $defaults = [
-        'FormLayoute' => true,
+        'FormEnable' => true,
         'FormLayout' => '1',
         'PageLayout' => '1',
-        'MailFrom' => 'you@example.com',
-        'MailTo' => 'who-will-get-notification@example.com',
+        'MailFrom' => '',
+        'MailTo' => '',
         'MailSubject' => 'New contact form inquiry',
         'SuccessTitle' => 'Thank you for submitting the contact form!',
-        'SuccessText' => 'We will get back to you ASAP.'
+        'SuccessText' => 'We will get back to you ASAP.',
+        'GoogleRecaptchaCssClass' => 'mt-3 mb-3',
+        'GoogleRecaptchaNoTickMsg' => 'Please tick the I\'m not a robot checkbox first!'
     ];
 
 
@@ -83,13 +85,13 @@ class CustomLayoutPage extends Page
             "1" => "Content Left, Form right if enabled",
             "2" => "Content Right, Form left if enabled",
             "3" => "Content Top, Form bottom if enabled",
-            "4" => "Option 4",
-            "5" => "Option 5",
-            "101" => "My Custom Template File xxx.ss", 
+            "4" => "Content Top, 3 cards below with Extra Images 1,2,3",
+            "5" => "2 Contents per line, 2 lines with Extra Content 1,2,3",
+            "101" => "My Custom Template File xxx.ss",
         );
 
         $fields->addFieldsToTab('Root.ExtraContent', [
- 
+
             TextField::create('ExtraText1', 'Extra Text 1'),
             TextField::create('ExtraText2', 'Extra Text 2'),
             TextField::create('ExtraText3', 'Extra Text 3'),
@@ -106,9 +108,9 @@ class CustomLayoutPage extends Page
 
         ]);
         $fields->addFieldsToTab('Root.PageLayout', [
-            $pageLayout =new OptionsetField( "PageLayout", "Page Layout", $pageLayoutSourceAry, $value = "1" ),
+            $pageLayout = new OptionsetField("PageLayout", "Page Layout", $pageLayoutSourceAry, $value = "1"),
             TextField::create('PageLayoutFilename', 'Custom Template File')
-                ->setDescription("eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!" ),
+                ->setDescription("eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!"),
         ]);
         $pageLayout->addExtraClass('PageLayoutOptions')->setDescription("<h3 id='layout-title'>Content Left, Form right if enabled</h3> <img id='layout-image' src='https://via.placeholder.com/400x400?text=Test+layout+image'/>
         <script>
@@ -130,36 +132,37 @@ class CustomLayoutPage extends Page
         </script>");
 
         $fields->addFieldsToTab('Root.FormSettings', [
-            TextField::create('FormLayout', 'Enable Contact Us Form')->setDescription(''),
-            new DropdownField('FormLayout', 'Form Style', [
-                '1'=>'Vertical with label',
-                '2'=>'Vertical without label',
-                '3'=>'Horizontal with label',
-                '4'=>'Horizontal without label',
-                '5'=>'System Generated - For Dev Test',
-                ]),
+            CheckboxField::create('FormEnable', 'Enable Contact Us Form')->setDescription(''),
+            new DropdownField('FormLayout', 'Form Layout', [
+                '1' => 'Vertical with label',
+                '2' => 'Vertical without label',
+                '3' => 'Horizontal with label',
+                '4' => 'Horizontal without label',
+                '5' => 'System Generated - For Dev Test',
+            ]),
 
 
-            TextField::create('MailFrom', 'Mail From'),
-            TextField::create('MailTo', 'Notify Email')          ->setDescription('This person will get notification after someone submit the form'),
+            //TextField::create('MailFrom', 'Mail From'),
+            TextField::create('MailTo', 'Notify Email')->setDescription('This person will get notification after someone submit the form. Will get the value from the global settings if it is empty.'),
             TextField::create('MailSubject', 'Mail Subject')
                 ->setDescription('We will not send email if this Mail Subject is empty'),
 
             TextField::create('SuccessTitle', 'Success Title')
                 ->setDescription('This will display as a title after the form success submitted.'),
             HTMLEditorField::create('SuccessText', 'Success Text')
-            ->setDescription('This will display as a content after the form success submitted.You can put links or images here.'),
+                ->setDescription('This will display as a content after the form success submitted.You can put links or images here.'),
         ]);
 
 
         $fields->addFieldsToTab('Root.GoogleRecaptcha', [
             CheckboxField::create('GoogleRecaptchaEnable', 'Enable Google Recaptcha')->setDescription(''),
-            TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('
-            Avoid spam by using Google Recaptcha v2'),
-            TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Get the key from https://www.google.com/recaptcha'),
-            TextField::create('GoogleRecaptchaCssClass', 'Recaptcha Css Class')->setDescription('Extra css class name for the Google Recaptcha area.'),
+
+            TextField::create('GoogleRecaptchaCssClass', 'Recaptcha Css Class')->setDescription('Extra css class name for the Google Recaptcha area. eg. mt-4 mb-5'),
+
             TextField::create('GoogleRecaptchaNoTickMsg', 'Recaptcha No Tick Msg')->setDescription('Frontend alert message if the end user does not tick the checkbox.'),
-            
+
+            TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('Will get the Site Key from settings if it is empty'),
+            TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Will get the Secret Key from settings if it is empty'),
 
         ]);
 

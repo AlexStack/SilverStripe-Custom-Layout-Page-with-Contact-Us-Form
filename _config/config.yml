@@ -1,6 +1,9 @@
 ---
-Name: SilverStripeContactUsForm
+Name: SSCustomPageWithContactUsForm
 ---
 SilverStripe\CMS\Controllers\ContentController:
   extensions:
-    - SilverStripeContactUsForm\ContactUsController
+    - SSCustomPageWithContactUsForm\ContactUsController
+Silverstripe\SiteConfig\SiteConfig:
+  extensions:
+    - CustomPageLayoutConfig

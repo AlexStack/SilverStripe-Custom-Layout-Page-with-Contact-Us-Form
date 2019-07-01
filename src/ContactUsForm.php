@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripeContactUsForm;
+namespace SSCustomPageWithContactUsForm;
 
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Email\Email;
@@ -16,14 +16,16 @@ use SilverStripe\Forms\RequiredFields;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 use GoogleRecaptchaToAnyForm\GoogleRecaptcha;
+use Silverstripe\SiteConfig\SiteConfig;
+
 
 class ContactUsForm extends Form
 {
-    protected $currController = false;
+    protected $currentController = false;
 
     public function __construct(Controller $controller, $name)
     {
-        $this->currController = $controller; 
+        $this->currentController = $controller; 
 
         $fields = FieldList::create(
             [
@@ -67,13 +69,13 @@ class ContactUsForm extends Form
                     ->setAttribute('required', 'required')
                     ->setAttribute('minlength', '6'),
  
-                HiddenField::create('FromPageUrl')->setValue($this->currController->Link),
+                HiddenField::create('FromPageUrl')->setValue($this->currentController->Link),
                 HiddenField::create('ExtraData1'),
                 HiddenField::create('ExtraData2'),
                 HiddenField::create('ExtraData3'),
 
-                HiddenField::create('FromPageTitle')->setValue($this->currController->Title),
-                HiddenField::create('Locale')->setValue($this->currController->Locale),
+                HiddenField::create('FromPageTitle')->setValue($this->currentController->Title),
+                HiddenField::create('Locale')->setValue($this->currentController->Locale),
             ]
         );
 
@@ -94,7 +96,7 @@ class ContactUsForm extends Form
             $this->setActions($actions);
         }
 
-        $session = $this->currController->getRequest()->getSession();
+        $session = $this->currentController->getRequest()->getSession();
         $oldData = $session->get("FormInfo.{$this->FormName()}.data");
         if ($oldData && (is_array($oldData) || is_object($oldData))) {
             $this->loadDataFrom($oldData);
@@ -110,12 +112,18 @@ class ContactUsForm extends Form
      */
     public function SaveFormData(array $data, Form $form, HTTPRequest $request)
     {
-        $SQLData = Convert::raw2sql($data);
-        //$attrs = $foSaveFormDatatAttributes();
+        $raw2sqlData = Convert::raw2sql($data);
+        $config = SiteConfig::current_site_config();
 
-        if ( $this->currController->GoogleRecaptchaEnable ){
-            //TODO: try get secret_key from mysite.xml if not set up in this page
-            GoogleRecaptcha::verify($this->currController->GoogleRecaptchaSecretKey, 'Google Recaptcha Validation Failed!!');            
+        if ( $this->currentController->GoogleRecaptchaEnable ){
+            $secretKey = $this->currentController->GoogleRecaptchaSecretKey;
+
+            if ( strlen($secretKey) < 20 ){
+                $secretKey = $config->GoogleRecaptchaSecretKey;
+            }
+            
+            
+            GoogleRecaptcha::verify($secretKey, 'Google Recaptcha Validation Failed!!');
         }
  
 
@@ -130,16 +138,16 @@ class ContactUsForm extends Form
          * to email specified in MailTo field.
          */
         $email_sent = true; //?
-        if ( strpos($SQLData['Email'], '@') ){
-            $mailFrom = $this->currController->MailFrom ? $this->currController->MailFrom : $SQLData['Email'];
-            $mailTo = $this->currController->MailTo ? $this->currController->MailTo : Email::getAdminEmail();
-            $mailSubject = $this->currController->MailSubject ?
-                ($this->currController->MailSubject.' - '.$SQLData['FromPageTitle']) :
+        if ( strpos($raw2sqlData['Email'], '@') ){
+            $mailFrom = $raw2sqlData['Email'];
+            $mailTo = $this->currentController->MailTo ? $this->currentController->MailTo : $config->ContactUsEmail;
+            $mailSubject = $this->currentController->MailSubject ?
+                ($this->currentController->MailSubject.' - '.$raw2sqlData['FromPageTitle']) :
                 'no-subject';
             $email = Email::create($mailFrom, $mailTo, $mailSubject);
-            $email->setReplyTo($SQLData['Email']);
-            $email->setHTMLTemplate('SilverStripeContactUsForm\\Email\\ContactUsEmail');
-            $email->setData($SQLData);
+            $email->setReplyTo($raw2sqlData['Email']);
+            $email->setHTMLTemplate('SSCustomPageWithContactUsForm\\Email\\ContactUsEmail');
+            $email->setData($raw2sqlData);
             $email_sent = $email->send();
 
             // maybe send the user an email as well
@@ -153,9 +161,9 @@ class ContactUsForm extends Form
          * a variable $ErrorMessage
          */
         if ($email_sent) {
-            $this->currController->redirect($this->currController->Link().'success');
+            $this->currentController->redirect($this->currentController->Link().'success');
         } else {
-            $this->currController->redirect($this->currController->Link().'error');
+            $this->currentController->redirect($this->currentController->Link().'error');
         }
 
         return false;
@@ -169,7 +177,7 @@ class ContactUsForm extends Form
     public function saveDataToSession()
     {
         $data = $this->getData();
-        $session = $this->currController->getRequest()->getSession();
+        $session = $this->currentController->getRequest()->getSession();
         $session->set("FormInfo.{$this->FormName()}.data", $data);
     }
 }
