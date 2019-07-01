@@ -1,16 +1,16 @@
 {
-    "name": "silverstripecontactss/contactus",
-    "description": "SilverStripe Custom Layout Page with Contact Us Form & flexible frontend with Google Recaptcha",
+    "name": "alexstack/silverstripe-custom-page-with-contact-us-form",
+    "description": "SilverStripe Custom Layout Page with Contact Us Form & flexible frontend with Google Recaptcha.",
     "type": "silverstripe-vendormodule",
     "homepage": "http://github.com/",
-    "keywords": ["silverstripe", "contact-form", "contact-us", "contact-us-form", "contact-page", "contact", "module", "cms"],
-    "license": "MIT",
+    "keywords": ["silverstripe", "custom-layout","contact-form", "contact-us", "contact-us-form", "contact-page", "contact", "module", "cms"],
+    "license": "BSD",
     "support": {
-        "issues": "http://github.com/issues"
+        "issues": "https://github.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form/issues"
     },
     "authors": [{
         "name": "Alex",
-        "homepage": "https://www.github.com/"
+        "homepage": "https://github.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form"
     }],
     "require": {
         "silverstripe/cms": "~4.0",
