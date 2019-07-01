@@ -26,8 +26,10 @@ class CustomLayoutPage extends Page
     private static $description = 'Custom Layout Page with Contact Us Form';
 
     private static $db = [
-        'FormStyle' => 'Varchar(255)',
+        'FormLayout' => 'Varchar(255)',
         'PageLayout' => 'Varchar(255)',
+        'PageLayoutFilename' => 'Varchar(255)',
+        'FormLayoutFilename' => 'Varchar(255)',
         'MailFrom' => 'Varchar(255)',
         'MailTo' => 'Varchar(255)',
         'MailSubject' => 'Varchar(255)',
@@ -63,8 +65,8 @@ class CustomLayoutPage extends Page
     private static $default_sort = 'ID DESC';
 
     private static $defaults = [
-        'FormEnable' => true,
-        'FormStyle' => '1',
+        'FormLayoute' => true,
+        'FormLayout' => '1',
         'PageLayout' => '1',
         'MailFrom' => 'you@example.com',
         'MailTo' => 'who-will-get-notification@example.com',
@@ -73,14 +75,21 @@ class CustomLayoutPage extends Page
         'SuccessText' => 'We will get back to you ASAP.'
     ];
 
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $pageLayoutSourceAry = array(
+            "1" => "Content Left, Form right if enabled",
+            "2" => "Content Right, Form left if enabled",
+            "3" => "Content Top, Form bottom if enabled",
+            "4" => "Option 4",
+            "5" => "Option 5",
+            "101" => "My Custom Template File xxx.ss", 
+        );
 
         $fields->addFieldsToTab('Root.ExtraContent', [
-            new OptionsetField( $name = "PageLayout", $title = "Page Layout", $source = array( "1" => "Option 1", "2" => "Option 2", "3" => "Option 3", "4" => "Option 4", "5" => "Option 5<img src='https://www.developer.com/imagesvr_ce/3977/Figure01.png'/>" ), $value = "1" ),
-
-
+ 
             TextField::create('ExtraText1', 'Extra Text 1'),
             TextField::create('ExtraText2', 'Extra Text 2'),
             TextField::create('ExtraText3', 'Extra Text 3'),
@@ -96,12 +105,33 @@ class CustomLayoutPage extends Page
             UploadField::create('ExtraFile3', 'Extra File 3'),
 
         ]);
+        $fields->addFieldsToTab('Root.PageLayout', [
+            $pageLayout =new OptionsetField( "PageLayout", "Page Layout", $pageLayoutSourceAry, $value = "1" ),
+            TextField::create('PageLayoutFilename', 'Custom Template File')
+                ->setDescription("eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!" ),
+        ]);
+        $pageLayout->addExtraClass('PageLayoutOptions')->setDescription("<h3 id='layout-title'>Content Left, Form right if enabled</h3> <img id='layout-image' src='https://via.placeholder.com/400x400?text=Test+layout+image'/>
+        <script>
+        function changeLayoutDescription(radioVal, radioText)  {
+            if (radioVal === '1') {
 
+            } else if (radioVal === '2') {
 
+            } 
+            jQuery('#layout-title').text(''+ radioText);
+            jQuery('#layout-image').attr('src','https://via.placeholder.com/400x300?text=Test'+ radioText);
+        }
+        jQuery('.PageLayoutOptions input:radio').click(function() {
+            var radioVal = jQuery(this).val();
+            var radioText = jQuery(this).parent().text();
+            changeLayoutDescription(radioVal,radioText);
+        });
+
+        </script>");
 
         $fields->addFieldsToTab('Root.FormSettings', [
-            CheckboxField::create('FormEnable', 'Enable Contact Us Form')->setDescription(''),
-            new DropdownField('FormStyle', 'Form Style', [
+            TextField::create('FormLayout', 'Enable Contact Us Form')->setDescription(''),
+            new DropdownField('FormLayout', 'Form Style', [
                 '1'=>'Vertical with label',
                 '2'=>'Vertical without label',
                 '3'=>'Horizontal with label',

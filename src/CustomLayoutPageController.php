@@ -35,5 +35,14 @@ class CustomLayoutPageController extends PageController
             return '<!-- GoogleRecaptchaSiteKey not set up yet! -->';
         }
         return GoogleRecaptcha::show($this->GoogleRecaptchaSiteKey, 'CustomLayoutForm_CustomLayoutForm_Message', 'no_debug', $this->GoogleRecaptchaCssClass, $this->GoogleRecaptchaNoTickMsg);
-    }    
+    }  
+    
+    function loadCustomTemplate() {
+        $str = '';
+        $ssFile = trim(str_replace('.ss','', $this->PageLayoutFilename));
+        if ( $ssFile != ''){
+          $str = '' . $this->renderWith('Includes/'.$ssFile);
+        }
+        return $str;
+   }    
 }

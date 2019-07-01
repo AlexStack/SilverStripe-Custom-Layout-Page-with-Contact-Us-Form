@@ -14,6 +14,8 @@
 	<% include CustomLayoutPage3 %>
 <% else_if PageLayout =='4' %>
 	<% include CustomLayoutPage4 %>
+<% else_if PageLayout =='101' %>
+	$loadCustomTemplate.RAW
 <% else %>
 	$CustomLayoutPage1	
 <% end_if %>

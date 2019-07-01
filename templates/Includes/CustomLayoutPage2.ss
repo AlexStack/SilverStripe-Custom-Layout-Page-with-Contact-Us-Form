@@ -40,13 +40,13 @@
 			<div class="message required">$ErrorMessage</div>
 			<% else_if FormEnable %>
 				
-				<% if FormStyle =='1' %>
+				<% if FormLayout =='1' %>
 					<% include ContactUsCustomForm1 %>
-				<% else_if FormStyle =='2' %>
+				<% else_if FormLayout =='2' %>
 					<% include ContactUsCustomForm2 %>
-				<% else_if FormStyle =='3' %>
+				<% else_if FormLayout =='3' %>
 					<% include ContactUsCustomForm3 %>
-				<% else_if FormStyle =='4' %>
+				<% else_if FormLayout =='4' %>
 					<% include ContactUsCustomForm4 %>
 				<% else %>
 					$ContactUsForm	
