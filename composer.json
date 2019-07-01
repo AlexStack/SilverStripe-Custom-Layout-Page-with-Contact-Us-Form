@@ -4,7 +4,7 @@
     "type": "silverstripe-vendormodule",
     "homepage": "http://github.com/",
     "keywords": ["silverstripe", "custom-layout","contact-form", "contact-us", "contact-us-form", "contact-page", "contact", "module", "cms"],
-    "license": "New BSD",
+    "license": "BSD-3-Clause",
     "support": {
         "issues": "https://github.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form/issues"
     },
