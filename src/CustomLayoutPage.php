@@ -71,10 +71,10 @@ class CustomLayoutPage extends Page
         'PageLayout' => '1',
         'MailFrom' => '',
         'MailTo' => '',
-        'MailSubject' => 'New contact form inquiry',
-        'SuccessTitle' => 'Thank you for submitting the contact form!',
+        'MailSubject' => 'New contact us form inquiry',
+        'SuccessTitle' => 'Thank You',
         'DisplayFormFields' => 'FirstName | Email | Phone | Company | Message',
-        'SuccessText' => '<p style="color: red;">We will get back to you ASAP.</p>',
+        'SuccessText' => '<p style="color: red;">Thank you for submitting the contact form!<br/><br/>We will get back to you ASAP.</p>',
         'GoogleRecaptchaCssClass' => 'mt-3 mb-3',
         'GoogleRecaptchaNoTickMsg' => 'Please tick the I\'m not a robot checkbox first!'
     ];
