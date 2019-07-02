@@ -5,7 +5,7 @@
 # How to install
 
 ```php
-composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-master
+composer require alexstack/silverstripe-custom-page-with-contact-us-form
 ```
 # Rebuild the database and flush admin page
 - Run your-site-url/dev/build?flush=1 after composer install and refresh your admin page by /admin?flush=1

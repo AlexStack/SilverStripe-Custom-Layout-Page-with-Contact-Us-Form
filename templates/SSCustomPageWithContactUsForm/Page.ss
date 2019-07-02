@@ -19,7 +19,7 @@
 	<div class="card m-5">
 		<div class="card-body">
 			<h4 class="card-title">Note</h4>
-			<p class="card-text">You can copy this template from vendor/alexstack/silverstripe-contact-us-form/templates/SSCustomPageWithContactUsForm/*.ss to your own template folder to custom the form and page style!</p>
+			<p class="card-text">You can override this with your own .ss template. <a href="https://github.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form/blob/master/README.md" target="_blank">document is here</a>!</p>
 		</div>
 	</div>
 	
