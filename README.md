@@ -50,7 +50,8 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 
 # <a name="custom-ss"></a>Use your own .ss template file for a custom page layout
 - eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!
-- How to start the .ss: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/CustomLayoutPage1.ss to your-theme/includes, rename it to NewProductPage.ss, change the .ss code inside to what you want. Just keep the variable name the same.
+- How to start the .ss: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/CustomLayoutPage1.ss to your-theme/includes, rename it to NewProductPage.ss, change the .ss code inside to what you want. Just keep the variable names the same.
+![custom-my-own-template-file](docs/images/custom-my-own-template-file.png)
 - Do not forget to run /dev/build?flush=1 first to load your new .ss template
 
 # <a name="display-fields"></a>Contact Us Form display fields
