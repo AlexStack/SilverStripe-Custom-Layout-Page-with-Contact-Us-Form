@@ -104,6 +104,7 @@ class ContactUsForm extends Form
 
                 HiddenField::create('FromPageTitle')->setValue($this->currentController->Title),
                 HiddenField::create('Locale')->setValue($this->currentController->Locale),
+                HiddenField::create('ip')->setValue($this->getClientIP()),
             ]
         );
 
@@ -140,6 +141,11 @@ class ContactUsForm extends Form
      */
     public function SaveFormData(array $data, Form $form, HTTPRequest $request)
     {
+
+        $data['FromPageTitle'] = $this->currentController->Title;
+        $data['FromPageUrl'] = $this->currentController->Link();
+        $data['IP'] = $this->getClientIP();
+
         $raw2sqlData = Convert::raw2sql($data);
         $config = SiteConfig::current_site_config();
 
@@ -153,7 +159,6 @@ class ContactUsForm extends Form
             
             GoogleRecaptcha::verify($secretKey, 'Google Recaptcha Validation Failed!!');
         }
- 
 
         $item = ContactUs::create();
         $form->saveInto($item);
@@ -172,7 +177,7 @@ class ContactUsForm extends Form
         if ( strpos($mailFrom, '@') && strpos($mailTo, '@') ){
 
             $mailSubject = $this->currentController->MailSubject ?
-                ($this->currentController->MailSubject.' - '.$raw2sqlData['FromPageTitle']) :
+                ($this->currentController->MailSubject) :
                 'no-subject';
             $email = Email::create($mailFrom, $mailTo, $mailSubject);
             $email->setReplyTo($raw2sqlData['Email']);
@@ -210,7 +215,29 @@ class ContactUsForm extends Form
         $session = $this->currentController->getRequest()->getSession();
         $session->set("FormInfo.{$this->FormName()}.data", $data);
     }
+
+    // Function to get the client IP address
+    function getClientIP() {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }    
 }
+
+
 
 class ContactUsForm_Validator extends RequiredFields
 {

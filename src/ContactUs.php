@@ -35,6 +35,7 @@ class ContactUs extends DataObject
         'FromPageTitle' => 'Varchar(255)',
         'Category' => 'Varchar(255)',
         'MyDate' => 'Varchar(255)',
+        'IP' => 'Varchar(255)',
         'Subject' => 'Varchar(255)',
         'Message' => 'Text',
         'FromPageUrl' => 'Varchar(255)',
@@ -121,86 +122,38 @@ class ContactUs extends DataObject
         $fields->addFieldsToTab('Root.Main', [
             HeaderField::create('HeaderDetails', "${tabName} details"),
             $dropFieldStatus,
-            TextField::create('FirstName', 'First Name2'),
-            TextField::create('LastName', 'Last Name2'),
-            TextField::create('CompanyName', 'Company Name'),
-            TextField::create('Website', 'Website'),
+            TextField::create('FirstName'),
+            TextField::create('LastName'),
             TextField::create('Email', 'Email'),
-            TextField::create('Phone2', 'Phone'),
-
-
+            TextField::create('Phone', 'Phone'),
+            TextField::create('Mobile', 'Mobile'),
+            TextField::create('CompanyName', 'Company Name'),
+            TextField::create('Address', 'Address'),
             TextareaField::create('Message', 'Message'),
             TextareaField::create('AdminComment', 'Admin Comment'),
-            ReadOnlyField::create('FromPageTitle', 'FromPageTitleeral'),
-            ReadOnlyField::create('FromPageUrl', 'From Page'),
+            ReadOnlyField::create('FromPageTitle'),
+            ReadOnlyField::create('FromPageUrl', 'From Page URL'),
             ReadOnlyField::create('Locale', 'Locale'),
-            ReadOnlyField::create('Created', 'Created'),            
+            ReadOnlyField::create('Created', 'Created'),   
+            
+            
+            TextField::create('Website'),
+            TextField::create('PostalCode'),
+            TextField::create('Street'),
+            TextField::create('City'),
+            TextField::create('State'),
+            TextField::create('Country'),
+            TextField::create('Category'),
+            TextField::create('MyDate'),
+
             TextareaField::create('ExtraData1', 'ExtraData1'),
             TextareaField::create('ExtraData2', 'ExtraData2'),
-            TextareaField::create('ExtraData3', 'ExtraData3'),            
+            TextareaField::create('ExtraData3', 'ExtraData3'),
+            TextareaField::create('ExtraData3', 'ExtraData4'),  
+            TextareaField::create('ExtraData3', 'ExtraData5'),  
         ]);
 
         return $fields;
     }
 
-    // public function onBeforeWrite()
-    // {
-    //     parent::onBeforeWrite();
-    // }
-
-    // public function canView($member = null, $context = [])
-    // {
-    //     return true;
-    // }
-
-    // public function canEdit($member = null, $context = [])
-    // {
-    //     return Permission::check('CONTACTINQUIRY_EDIT');
-    // }
-
-    // public function canDelete($member = null, $context = [])
-    // {
-    //     return Permission::check('CONTACTINQUIRY_DELETE');
-    // }
-
-    // public function canCreate($member = null, $context = [])
-    // {
-    //     return Permission::check('CONTACTINQUIRY_CREATE');
-    // }
-
-    // public function providePermissions()
-    // {
-    //     return [
-    //         'CONTACTINQUIRY_EDIT' => [
-    //             'name' => _t(
-    //                 __CLASS__.'.EditPermissionLabel',
-    //                 'Edit a Contact Us Data'
-    //             ),
-    //             'category' => _t(
-    //                 __CLASS__.'.Category',
-    //                 'Contact Us Data'
-    //             ),
-    //         ],
-    //         'CONTACTINQUIRY_DELETE' => [
-    //             'name' => _t(
-    //                 __CLASS__.'.DeletePermissionLabel',
-    //                 'Delete a Contact Us Data'
-    //             ),
-    //             'category' => _t(
-    //                 __CLASS__.'.Category',
-    //                 'Contact Us Data'
-    //             ),
-    //         ],
-    //         'CONTACTINQUIRY_CREATE' => [
-    //             'name' => _t(
-    //                 __CLASS__.'.CreatePermissionLabel',
-    //                 'Create a Contact Us Data'
-    //             ),
-    //             'category' => _t(
-    //                 __CLASS__.'.Category',
-    //                 'Contact Us Data'
-    //             ),
-    //         ],
-    //     ];
-    // }
 }
