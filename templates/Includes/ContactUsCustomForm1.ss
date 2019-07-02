@@ -12,33 +12,33 @@
   ></p>
 
   <fieldset>
-    $displayFormField('FirstName', 'First Name','showLabel', 'required="required"','input-class').RAW 
+    $displayFormField('FirstName', 'First Name','showLabel', 'required="required"','mb-3').RAW 
 
-    $displayFormField('LastName', 'Last Name','showLabel', 'required="false"','input-class').RAW 
+    $displayFormField('LastName', 'Last Name','showLabel', 'required="false"','mb-3').RAW 
 
-    $displayFormField('Email', 'Email','showLabel','type="email" required="required"','input-class').RAW 
+    $displayFormField('Email', 'Email','showLabel','type="email" required="required"','mb-3').RAW 
 
-    $displayFormField('Phone', 'Phone Number','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Phone', 'Phone Number','showLabel','type="text" ','mb-3').RAW 
 
-    $displayFormField('Mobile', 'Mobile Number','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Mobile', 'Mobile Number','showLabel','type="text" ','mb-3').RAW 
 
-    $displayFormField('Company', 'Company Name','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Company', 'Company Name','showLabel','type="text" ','mb-3').RAW 
       
-    $displayFormField('Website', 'Website','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Website', 'Website','showLabel','type="text" ','mb-3').RAW 
 
-    $displayFormField('Address', 'Address','showLabel','type="text" ','input-class').RAW
+    $displayFormField('Address', 'Address','showLabel','type="text" ','mb-3').RAW
     
-    $displayFormField('Street', 'Street','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Street', 'Street','showLabel','type="text" ','mb-3').RAW 
 
-    $displayFormField('PostalCode', 'Postal Code','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('PostalCode', 'Postal Code','showLabel','type="text" ','mb-3').RAW 
   
-    $displayFormField('City', 'City','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('City', 'City','showLabel','type="text" ','mb-3').RAW 
   
-    $displayFormField('State', 'State','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('State', 'State','showLabel','type="text" ','mb-3').RAW 
   
-    $displayFormField('Country', 'Country','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Country', 'Country','showLabel','type="text" ','mb-3').RAW 
 
-    $displayFormField('Subject', 'Subject','showLabel','type="text" ','input-class').RAW 
+    $displayFormField('Subject', 'Subject','showLabel','type="text" ','mb-3').RAW 
 
     $displayFormField('Message', 'Message','showLabel','type="textarea" required="required" minlength="6" rows="8" cols="20"','textarea-class w-100').RAW
  

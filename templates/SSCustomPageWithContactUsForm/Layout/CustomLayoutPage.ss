@@ -1,7 +1,7 @@
 <%-- include Header --%>
 <div class="container $URLSegment">
     <div class="row">
-        <div class="col-md text-center custom-page-title">
+        <div class="col-md mb-4 text-center custom-page-title">
             <h1>$Title</h1>
         </div>
 	</div>

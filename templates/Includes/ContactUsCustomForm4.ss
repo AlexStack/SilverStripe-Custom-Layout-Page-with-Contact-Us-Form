@@ -13,33 +13,33 @@
 
 <fieldset>
 <div class="row">
-    $displayFormField('FirstName', 'First Name','hideLabel', 'required="required"','input-class', 'col-md-6').RAW 
+    $displayFormField('FirstName', 'First Name','hideLabel', 'required="required"','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('LastName', 'Last Name','hideLabel', 'required="false"','input-class', 'col-md-6').RAW 
+    $displayFormField('LastName', 'Last Name','hideLabel', 'required="false"','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Email', 'Email','hideLabel','type="email" required="required"','input-class', 'col-md-6').RAW 
+    $displayFormField('Email', 'Email','hideLabel','type="email" required="required"','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Phone', 'Phone Number','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Phone', 'Phone Number','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Mobile', 'Mobile Number','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Mobile', 'Mobile Number','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Company', 'Company Name','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Company', 'Company Name','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
       
-    $displayFormField('Website', 'Website','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Website', 'Website','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Address', 'Address','hideLabel','type="text" ','input-class', 'col-md-6').RAW
+    $displayFormField('Address', 'Address','hideLabel','type="text" ','mb-3', 'col-md-6').RAW
     
-    $displayFormField('Street', 'Street','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Street', 'Street','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('PostalCode', 'Postal Code','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('PostalCode', 'Postal Code','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
   
-    $displayFormField('City', 'City','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('City', 'City','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
   
-    $displayFormField('State', 'State','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('State', 'State','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
   
-    $displayFormField('Country', 'Country','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Country', 'Country','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
-    $displayFormField('Subject', 'Subject','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+    $displayFormField('Subject', 'Subject','hideLabel','type="text" ','mb-3', 'col-md-6').RAW 
 
     <div class="w-100"></div>
     $displayFormField('Message', 'Message','hideLabel','type="textarea" required="required" minlength="6" rows="8" cols="20"','textarea-class w-100', 'col-md-12').RAW
