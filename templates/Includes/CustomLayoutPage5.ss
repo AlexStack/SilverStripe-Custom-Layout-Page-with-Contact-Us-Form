@@ -1,3 +1,8 @@
+<div class="row">
+  <div class="col-md mb-4 text-center custom-page-title">
+      <h1>$Title</h1>
+  </div>
+</div>
 <div class="row custom-page-content">
   <div class="col-md-6 MainContent">
     $Content
