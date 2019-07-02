@@ -30,6 +30,7 @@ class CustomLayoutPage extends Page
         'PageLayout' => 'Varchar(255)',
         'PageLayoutFilename' => 'Varchar(255)',
         'FormLayoutFilename' => 'Varchar(255)',
+        'DisplayFormFields' => 'Text',
         'MailFrom' => 'Varchar(255)',
         'MailTo' => 'Varchar(255)',
         'MailSubject' => 'Varchar(255)',
@@ -72,7 +73,8 @@ class CustomLayoutPage extends Page
         'MailTo' => '',
         'MailSubject' => 'New contact form inquiry',
         'SuccessTitle' => 'Thank you for submitting the contact form!',
-        'SuccessText' => 'We will get back to you ASAP.',
+        'DisplayFormFields' => 'FirstName | Email | Phone | Message',
+        'SuccessText' => '<p style="color: red;">We will get back to you ASAP.</p>',
         'GoogleRecaptchaCssClass' => 'mt-3 mb-3',
         'GoogleRecaptchaNoTickMsg' => 'Please tick the I\'m not a robot checkbox first!'
     ];
@@ -141,9 +143,8 @@ class CustomLayoutPage extends Page
                 '5' => 'System Generated - For Dev Test',
             ]),
 
-
-            //TextField::create('MailFrom', 'Mail From'),
-            TextField::create('MailTo', 'Notify Email')->setDescription('This person will get notification after someone submit the form. Will get the value from the global settings if it is empty.'),
+            TextField::create('DisplayFormFields', 'Display Fields')->setDescription('You can choose what fields will display from FirstName | Email | Phone | Message | LastName | Mobile | Company | Website | Address | Street | PostalCode | City | State | Country. Document is here. '),
+            TextField::create('MailTo', 'Notify Email')->setDescription('This person will get notification after someone submit the form. Will get the value from <a href="/admin/settings/">the global settings</a> if it is empty.'),
             TextField::create('MailSubject', 'Mail Subject')
                 ->setDescription('We will not send email if this Mail Subject is empty'),
 
@@ -161,8 +162,8 @@ class CustomLayoutPage extends Page
 
             TextField::create('GoogleRecaptchaNoTickMsg', 'Recaptcha No Tick Msg')->setDescription('Frontend alert message if the end user does not tick the checkbox.'),
 
-            TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('Will get the Site Key from settings if it is empty'),
-            TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Will get the Secret Key from settings if it is empty'),
+            TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('Will get the Site Key from <a href="/admin/settings/">the global settings</a> if it is empty'),
+            TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Will get the Secret Key from <a href="/admin/settings/">the global settings</a> if it is empty'),
 
         ]);
 

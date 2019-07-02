@@ -1,187 +1,61 @@
 <form
-    id="ContactUsForm_ContactUsForm"
-    action="/$URLSegment/ContactUsForm/"
-    method="post"
-    enctype="application/x-www-form-urlencoded"
+  id="ContactUsForm_ContactUsForm"
+  action="/$URLSegment/ContactUsForm/"
+  method="post"
+  enctype="application/x-www-form-urlencoded"
+  class="w-100 contact-us-form"
 >
-    <p
-        id="ContactUsForm_ContactUsForm_error"
-        class="message "
-        style="display: none"
-    ></p>
-	horizontal without label
-    <fieldset>
-        <div
-            id="ContactUsForm_ContactUsForm_FirstName_Holder"
-            class="field text"
-        >
-            <label class="left" for="ContactUsForm_ContactUsForm_FirstName"
-                >First Name</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="FirstName"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_FirstName"
-                    required="required"
-                    aria-required="true"
-                />
-            </div>
-        </div>
+  <p
+    id="ContactUsForm_ContactUsForm_error"
+    class="message "
+    style="display: none"
+  ></p>
 
-        <div
-            id="ContactUsForm_ContactUsForm_LastName_Holder"
-            class="field text"
-        >
-            <label class="left" for="ContactUsForm_ContactUsForm_LastName"
-                >Last Name</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="LastName"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_LastName"
-                />
-            </div>
-        </div>
+<fieldset>
+<div class="row">
+    $displayFormField('FirstName', 'First Name','hideLabel', 'required="required"','input-class', 'col-md-6').RAW 
 
-        <div
-            id="ContactUsForm_ContactUsForm_Email_Holder"
-            class="field email text"
-        >
-            <label class="left" for="ContactUsForm_ContactUsForm_Email"
-                >Email</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="email"
-                    name="Email"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_Email"
-                    required="required"
-                />
-            </div>
-        </div>
+    $displayFormField('LastName', 'Last Name','hideLabel', 'required="false"','input-class', 'col-md-6').RAW 
 
-        <div id="ContactUsForm_ContactUsForm_Phone_Holder" class="field text">
-            <label class="left" for="ContactUsForm_ContactUsForm_Phone"
-                >Phone</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="Phone"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_Phone"
-                    placeholder="Your Phone number"
-                />
-            </div>
-        </div>
+    $displayFormField('Email', 'Email','hideLabel','type="email" required="required"','input-class', 'col-md-6').RAW 
 
-        <div id="ContactUsForm_ContactUsForm_Address_Holder" class="field text">
-            <label class="left" for="ContactUsForm_ContactUsForm_Address"
-                >Address</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="Address"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_Address"
-                />
-            </div>
-        </div>
+    $displayFormField('Phone', 'Phone Number','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <div
-            id="ContactUsForm_ContactUsForm_CompanyName_Holder"
-            class="field text"
-        >
-            <label class="left" for="ContactUsForm_ContactUsForm_CompanyName"
-                >Company Name</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="CompanyName"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_CompanyName"
-                />
-            </div>
-        </div>
+    $displayFormField('Mobile', 'Mobile Number','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <div id="ContactUsForm_ContactUsForm_Website_Holder" class="field text">
-            <label class="left" for="ContactUsForm_ContactUsForm_Website"
-                >Website</label
-            >
-            <div class="middleColumn">
-                <input
-                    type="text"
-                    name="Website"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_Website"
-                />
-            </div>
-        </div>
+    $displayFormField('Company', 'Company Name','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+      
+    $displayFormField('Website', 'Website','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <div
-            id="ContactUsForm_ContactUsForm_Message_Holder"
-            class="field textarea"
-        >
-            <label class="left" for="ContactUsForm_ContactUsForm_Message"
-                >Message</label
-            >
-            <div class="middleColumn">
-                <textarea
-                    name="Message"
-                    class="form-control"
-                    id="ContactUsForm_ContactUsForm_Message"
-                    placeholder="Your Message for us"
-                    required="required"
-                    minlength="6"
-                    rows="8"
-                    cols="20"
-                ></textarea>
-            </div>
-        </div>
+    $displayFormField('Address', 'Address','hideLabel','type="text" ','input-class', 'col-md-6').RAW
+    
+    $displayFormField('Street', 'Street','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <input
-            type="hidden"
-            name="FromPageTitle"
-            value="New Page with Contact Us Form"
-            class="hidden"
-            id="ContactUsForm_ContactUsForm_FromPageTitle"
-        />
+    $displayFormField('PostalCode', 'Postal Code','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+  
+    $displayFormField('City', 'City','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+  
+    $displayFormField('State', 'State','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
+  
+    $displayFormField('Country', 'Country','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <input
-            type="hidden"
-            name="Locale"
-            class="hidden"
-            id="ContactUsForm_ContactUsForm_Locale"
-        />
+    $displayFormField('Subject', 'Subject','hideLabel','type="text" ','input-class', 'col-md-6').RAW 
 
-        <input
-            type="hidden"
-            name="ip"
-            value="a23cbab890b339525c930d123618940c66a489a6"
-            class="hidden"
-            id="ContactUsForm_ContactUsForm_SecurityID"
-        />
+    <div class="w-100"></div>
+    $displayFormField('Message', 'Message','hideLabel','type="textarea" required="required" minlength="6" rows="8" cols="20"','textarea-class w-100', 'col-md-12').RAW
+</div>
+</fieldset>
 
-        <div class="clear"><!-- --></div>
-    </fieldset>
-
-    <div class="btn-toolbar">
-        <button
-            type="submit"
-            name="action_SaveFormData"
-            value="Submit"
-            class="btn btn-primary mt-2 btn-submit"
-            id="ContactUsForm_ContactUsForm_action_SaveFormData"
-        >
-            <span>Submit666667</span>
-        </button>
-    </div>
+  <div class="btn-toolbar">
+    <button
+      type="submit"
+      name="action_SaveFormData"
+      value="Submit"
+      class="btn btn-primary mt-2 btn-submit"
+      id="ContactUsForm_ContactUsForm_action_SaveFormData"
+    >
+      <span>Submit</span>
+    </button>
+  </div>
 </form>
-ContactUsForm2ContactUsForm2
+

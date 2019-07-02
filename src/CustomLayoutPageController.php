@@ -5,6 +5,7 @@ namespace SSCustomPageWithContactUsForm;
 use PageController;
 use GoogleRecaptchaToAnyForm\GoogleRecaptcha;
 use Silverstripe\SiteConfig\SiteConfig;
+use SilverStripe\View\Requirements;
 
 
 class CustomLayoutPageController extends PageController
@@ -17,6 +18,11 @@ class CustomLayoutPageController extends PageController
     public function init()
     {
         parent::init();
+        // in case the simple theme doesn't has bootstrap.css
+        if ( strpos($this->ThemeDir(), '/simple')) {
+            Requirements::css('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css');
+        }
+
     }
 
     public function ErrorMessage()
@@ -55,5 +61,51 @@ class CustomLayoutPageController extends PageController
         return $str;
     }
 
+    function formFieldEnabled($fieldName) {
+        $ary = explode('|',str_replace(' ','', strtolower($this->DisplayFormFields)));
+        if ( in_array(strtolower(trim($fieldName)), $ary) ){
+            return true;
+        }
+        return false;
+    }
+
+    function displayFormField($fieldName, $labelText = '', $showLabel = 'showLabel', $attributeStr= '', $inputClass= '', $holderClass= '') {
+        if ( !$this->formFieldEnabled($fieldName) ){
+            return '';
+        }
+        if ( $labelText == 'First Name' && !$this->formFieldEnabled('LastName') ){
+            $labelText = 'Your Name';
+        }
+
+        $labelCss =  ( $showLabel == 'showLabel' ) ? 'showLabel' : 'd-none hideLabel';
+        $placeholder =  ( $showLabel == 'showLabel' ) ? '' : $labelText;
+
+        $fieldHtml = '<div id="ContactUsForm_ContactUsForm_' . $fieldName . '_Holder" class="field inputHolder ' . $holderClass .'">
+        <label class="' . $labelCss . '" for="ContactUsForm_ContactUsForm_' . $fieldName . '">' . $labelText . '</label>
+        <div class="middleColumn">';
+        if ( strpos($attributeStr, 'textarea') ){
+            $fieldHtml .= '<textarea
+            name="' . $fieldName . '"
+            class="form-control input-' . $fieldName . ' ' . $inputClass . '"
+            id="ContactUsForm_ContactUsForm_' . $fieldName . '"
+            placeholder="' . $placeholder . '"
+            ' . $attributeStr . '
+            ></textarea>';
+        } else {
+            $fieldHtml .= '<input
+            name="' . $fieldName . '"
+            class="form-control input-' . $fieldName . ' ' . $inputClass . '"
+            id="ContactUsForm_ContactUsForm_' . $fieldName . '"
+            placeholder="' . $placeholder . '"
+                ' . $attributeStr . '
+            />';
+        }
+
+
+        $fieldHtml .= '  </div>
+        </div>';
+
+      return $fieldHtml;
+    }
 
 }

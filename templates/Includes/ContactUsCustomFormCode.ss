@@ -1,5 +1,4 @@
 
-ContactUsCustomFormCode
 <a name="custom-contact-us-form"></a>
 <% if Action = success %>
     <div class="success-content">
@@ -7,9 +6,9 @@ ContactUsCustomFormCode
         $SuccessText
     </div>
 <% else_if Action = error %>
-<div class="error-message">$ErrorMessage</div>
-<div class="contact-us-custom-form">
+    <div class="error-message">$ErrorMessage</div>
 <% else_if FormEnable %>
+    <div class="contact-us-custom-form">
     <% if FormLayout =='1' %>
         <% include ContactUsCustomForm1 %>
     <% else_if FormLayout =='2' %>
@@ -21,5 +20,5 @@ ContactUsCustomFormCode
     <% else %>
         $ContactUsForm	
     <% end_if %>
+    </div>
 <% end_if %>
-</div>

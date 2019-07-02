@@ -49,13 +49,12 @@ class ContactUsForm extends Form
 
                 TextField::create('Phone')
                     ->setTitle('Phone')
-                    ->setAttribute('placeholder','Your Phone number')
                     ->setAttribute('class', 'form-control')
                     ,
-
-                TextField::create('Address')
-                    ->setTitle('Address')
-                    ->setAttribute('placeholder', '')->setAttribute('class', 'form-control'),
+                TextField::create('Mobile')
+                    ->setAttribute('class', 'form-control')
+                    ,
+                
                 TextField::create('CompanyName')
                     ->setTitle('Company Name')
                     ->setAttribute('class', 'form-control')
@@ -63,16 +62,45 @@ class ContactUsForm extends Form
                 TextField::create('Website')
                 ->setAttribute('class', 'form-control'),
 
+
+                TextField::create('Address')
+                ->setTitle('Address')
+                ->setAttribute('placeholder', '')->setAttribute('class', 'form-control'),
+
+                TextField::create('Street')
+                ->setAttribute('class', 'form-control')
+                ,
+                TextField::create('PostalCode')
+                ->setAttribute('class', 'form-control')
+                ,
+                TextField::create('City')
+                ->setAttribute('class', 'form-control')
+                ,
+                TextField::create('State')
+                ->setAttribute('class', 'form-control')
+                ,
+                TextField::create('Country')
+                ->setAttribute('class', 'form-control')
+                ,
+                TextField::create('Subject')
+                ->setAttribute('class', 'form-control')
+                ,                
                 TextareaField::create('Message')
                     ->setTitle('Message')
                     ->setRows(8)->setAttribute('class', 'form-control')
                     ->setAttribute('required', 'required')
                     ->setAttribute('minlength', '6'),
  
+
+
                 HiddenField::create('FromPageUrl')->setValue($this->currentController->Link),
                 HiddenField::create('ExtraData1'),
                 HiddenField::create('ExtraData2'),
                 HiddenField::create('ExtraData3'),
+                HiddenField::create('ExtraData4'),
+                HiddenField::create('ExtraData5'),
+                HiddenField::create('Category'),
+                HiddenField::create('MyDate'),
 
                 HiddenField::create('FromPageTitle')->setValue($this->currentController->Title),
                 HiddenField::create('Locale')->setValue($this->currentController->Locale),
@@ -138,9 +166,11 @@ class ContactUsForm extends Form
          * to email specified in MailTo field.
          */
         $email_sent = true; //?
-        if ( strpos($raw2sqlData['Email'], '@') ){
-            $mailFrom = $raw2sqlData['Email'];
-            $mailTo = $this->currentController->MailTo ? $this->currentController->MailTo : $config->ContactUsEmail;
+        $mailFrom = $raw2sqlData['Email'];
+        $mailTo = $this->currentController->MailTo ? $this->currentController->MailTo : $config->ContactUsEmail;
+
+        if ( strpos($mailFrom, '@') && strpos($mailTo, '@') ){
+
             $mailSubject = $this->currentController->MailSubject ?
                 ($this->currentController->MailSubject.' - '.$raw2sqlData['FromPageTitle']) :
                 'no-subject';
