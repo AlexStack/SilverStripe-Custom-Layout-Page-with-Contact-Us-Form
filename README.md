@@ -58,5 +58,8 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 - How to override: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/ContactUsCustomForm1.ss to your-theme/includes, and add/change the html inside to what you want. Just keep the input field name the same.
 - Can I add more fields to the form? You can also add some extra fields to extend the form without touch a php file or database. Available extra field names are: ExtraData1, ExtraData2, ExtraData3, ExtraData4, ExtraData5, Category, MyDate
 
+# Thanks
+- Inspired by Fractaslabs' contact-page
+
 # License
 - New BSD

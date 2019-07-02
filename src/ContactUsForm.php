@@ -17,7 +17,7 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 use GoogleRecaptchaToAnyForm\GoogleRecaptcha;
 use Silverstripe\SiteConfig\SiteConfig;
-
+use Exception;
 
 class ContactUsForm extends Form
 {
@@ -92,8 +92,6 @@ class ContactUsForm extends Form
                     ->setAttribute('minlength', '6'),
  
 
-
-                HiddenField::create('FromPageUrl')->setValue($this->currentController->Link),
                 HiddenField::create('ExtraData1'),
                 HiddenField::create('ExtraData2'),
                 HiddenField::create('ExtraData3'),
@@ -102,9 +100,6 @@ class ContactUsForm extends Form
                 HiddenField::create('Category'),
                 HiddenField::create('MyDate'),
 
-                HiddenField::create('FromPageTitle')->setValue($this->currentController->Title),
-                HiddenField::create('Locale')->setValue($this->currentController->Locale),
-                HiddenField::create('ip')->setValue($this->getClientIP()),
             ]
         );
 
@@ -141,10 +136,8 @@ class ContactUsForm extends Form
      */
     public function SaveFormData(array $data, Form $form, HTTPRequest $request)
     {
-
+        $data['FromPageUrl'] = $this->currentController->AbsoluteLink();
         $data['FromPageTitle'] = $this->currentController->Title;
-        $data['FromPageUrl'] = $this->currentController->Link();
-        $data['IP'] = $this->getClientIP();
 
         $raw2sqlData = Convert::raw2sql($data);
         $config = SiteConfig::current_site_config();
@@ -161,6 +154,10 @@ class ContactUsForm extends Form
         }
 
         $item = ContactUs::create();
+
+        $item->FromPageTitle = $data['FromPageTitle'];
+        $item->FromPageUrl = $data['FromPageUrl'];
+        $item->IP = $this->getClientIP();
         $form->saveInto($item);
         $item->write();
 
@@ -174,20 +171,26 @@ class ContactUsForm extends Form
         $mailFrom = $raw2sqlData['Email'];
         $mailTo = $this->currentController->MailTo ? $this->currentController->MailTo : $config->ContactUsEmail;
 
-        if ( strpos($mailFrom, '@') && strpos($mailTo, '@') ){
+        try{
+            if ( strpos($mailFrom, '@') && strpos($mailTo, '@') ){
 
-            $mailSubject = $this->currentController->MailSubject ?
-                ($this->currentController->MailSubject) :
-                'no-subject';
-            $email = Email::create($mailFrom, $mailTo, $mailSubject);
-            $email->setReplyTo($raw2sqlData['Email']);
-            $email->setHTMLTemplate('SSCustomPageWithContactUsForm\\Email\\ContactUsEmail');
-            $email->setData($raw2sqlData);
-            $email_sent = $email->send();
-
-            // maybe send the user an email as well
-
+                $mailSubject = $this->currentController->MailSubject ?
+                    ($this->currentController->MailSubject . ' from ' . $config->Title) :
+                    'no-subject';
+                $email = Email::create($mailFrom, $mailTo, $mailSubject);
+                $email->setReplyTo($raw2sqlData['Email']);
+                $email->setHTMLTemplate('SSCustomPageWithContactUsForm\\Email\\ContactUsEmail');
+                $email->setData($raw2sqlData);
+                $email_sent = $email->send();
+                
+                // maybe send the user an email as well
+    
+            }
+        } 
+        catch(Exception $e) {
+            $email_sent = false;
         }
+
 
 
         /*

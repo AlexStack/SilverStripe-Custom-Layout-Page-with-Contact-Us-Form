@@ -133,6 +133,7 @@ class ContactUs extends DataObject
             TextareaField::create('AdminComment', 'Admin Comment'),
             ReadOnlyField::create('FromPageTitle'),
             ReadOnlyField::create('FromPageUrl', 'From Page URL'),
+            ReadOnlyField::create('IP', 'Client IP Address'),
             ReadOnlyField::create('Locale', 'Locale'),
             ReadOnlyField::create('Created', 'Created'),   
             

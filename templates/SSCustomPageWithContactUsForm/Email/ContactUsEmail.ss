@@ -17,7 +17,7 @@
 <body>
 
 <div class="container">
-    <div class="row mb-3">
+    <div class="row mb-3 mt-3">
         <div class="col-md-4">
                 <h4>Full Name:</h4>
         </div>   
@@ -58,6 +58,15 @@
         </div>   
         <div class="col-md-8">
                 $Message
+        </div>               
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+                <h4>From Page:</h4>
+        </div>   
+        <div class="col-md-8">
+                $FromPageUrl
         </div>               
     </div>
 
