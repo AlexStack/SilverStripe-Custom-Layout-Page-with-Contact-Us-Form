@@ -5,7 +5,7 @@
 # How to install
 
 ```php
-composer require alexstack/silverstripe-custom-page-with-contact-us-form
+composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-master
 ```
 
 # How to use it
@@ -48,7 +48,7 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form
 - eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!
 - How to start the .ss: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/CustomLayoutPage1.ss to your-theme/includes, rename it to NewProductPage.ss, change the .ss code inside to what you want. Just keep the variable name the same.
 - Do not forget to run /dev/build?flush=1 first to load your new .ss template
-
+<a name="display-fields"></a>
 # Contact Us Form display fields
 - There are some built-in fields. You can choose what fields will display from FirstName | Email | Phone | Message | LastName | Mobile | Company | Website | Address | Street | PostalCode | City | State | Country 
 - Use | for the fields separator.  

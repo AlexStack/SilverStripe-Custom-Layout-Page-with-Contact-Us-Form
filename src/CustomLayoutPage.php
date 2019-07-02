@@ -114,16 +114,11 @@ class CustomLayoutPage extends Page
             TextField::create('PageLayoutFilename', 'Custom Template File')
                 ->setDescription("eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!"),
         ]);
-        $pageLayout->addExtraClass('PageLayoutOptions')->setDescription("<h3 id='layout-title'>Content Left, Form right if enabled</h3> <img id='layout-image' src='https://via.placeholder.com/400x400?text=Test+layout+image'/>
+        $pageLayout->addExtraClass('PageLayoutOptions')->setDescription("<h3 id='layout-title'>" . $pageLayoutSourceAry[$this->PageLayout] . "</h3> <img id='layout-image' src='https://raw.githubusercontent.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form/master/docs/images/page-layout-00" . $this->PageLayout . ".png'/>
         <script>
         function changeLayoutDescription(radioVal, radioText)  {
-            if (radioVal === '1') {
-
-            } else if (radioVal === '2') {
-
-            } 
             jQuery('#layout-title').text(''+ radioText);
-            jQuery('#layout-image').attr('src','https://via.placeholder.com/400x300?text=Test'+ radioText);
+            jQuery('#layout-image').attr('src','https://raw.githubusercontent.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form/master/docs/images/page-layout-00'+ radioVal + '.png');
         }
         jQuery('.PageLayoutOptions input:radio').click(function() {
             var radioVal = jQuery(this).val();
@@ -143,7 +138,7 @@ class CustomLayoutPage extends Page
                 '5' => 'System Generated - For Dev Test',
             ]),
 
-            TextField::create('DisplayFormFields', 'Display Fields')->setDescription('You can choose what fields will display from FirstName | Email | Phone | Message | LastName | Mobile | Company | Website | Address | Street | PostalCode | City | State | Country. Document is here. '),
+            TextField::create('DisplayFormFields', 'Display Fields')->setDescription('You can choose what fields will display from FirstName | Email | Phone | Message | LastName | Mobile | Company | Website | Address | Street | PostalCode | City | State | Country. <a href="https://github.com/AlexStack/SilverStripe-Custom-Layout-Page-with-Contact-Us-Form#display-fields" target="_blank">Document is here</a>. '),
             TextField::create('MailTo', 'Notify Email')->setDescription('This person will get notification after someone submit the form. Will get the value from <a href="/admin/settings/">the global settings</a> if it is empty.'),
             TextField::create('MailSubject', 'Mail Subject')
                 ->setDescription('We will not send email if this Mail Subject is empty'),
