@@ -14,7 +14,7 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 - [x] [Create a new page in SilverStripe admin and choose page type "Custom Page with Contact Us Form"](#choose-page-type)
 - [x] [Choose custom page layout](#select-page-layout) from [built-in layouts](#built-in-layouts)
 - [x] Or [use your own template xxx.ss](#custom-ss)
-- [x] [Change Form Settings ](#form-settings)
+- [x] [Change Form Settings ](#form-settings), [Custom form display fields](#display-fields)
 - [x] [Set up Google Recaptcha](#set-up-google-recaptcha)
 - [x] [Save & publish the page](#publish-page)
 
@@ -52,10 +52,13 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 - eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!
 - How to start the .ss: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/CustomLayoutPage1.ss to your-theme/includes, rename it to NewProductPage.ss, change the .ss code inside to what you want. Just keep the variable name the same.
 - Do not forget to run /dev/build?flush=1 first to load your new .ss template
-<a name="display-fields"></a>
-# Contact Us Form display fields
+
+# <a name="display-fields"></a>Contact Us Form display fields
 - There are some built-in fields. You can choose what fields will display from FirstName | Email | Phone | Message | LastName | Mobile | Company | Website | Address | Street | PostalCode | City | State | Country 
-- Use | for the fields separator.  
+- Use | for the fields separator. 
+- By default, the form will display:  FirstName | Email | Phone | Company | Message
+- You can easily change Company to Address by replace it with: FirstName | Email | Phone | Company | Message
+- Or you can add more fields if you want.
 
 # Override the frontend form template
 - You can override the .ss template file if you want to add more fields or change fields display orders, or something else. 
