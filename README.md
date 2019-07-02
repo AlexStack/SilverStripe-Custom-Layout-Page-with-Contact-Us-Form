@@ -7,30 +7,34 @@
 ```php
 composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-master
 ```
+# Rebuild the database and flush admin page
+- Run your-site-url/dev/build?flush=1 after composer install and refresh your admin page by /admin?flush=1
 
 # How to use it
-- Create a new page in SilverStripe admin and choose page type "Custom Page with Contact Us Form"
-- Choose custom page layout or use your own template xxx.ss
-- Change Form Settings 
-- Set up Google Recaptcha
-- Save & publish the page
+- [x] [Create a new page in SilverStripe admin and choose page type "Custom Page with Contact Us Form"](#choose-page-type)
+- [x] [Choose custom page layout](#select-page-layout) from [built-in layouts](#built-in-layouts)
+- [x] Or [use your own template xxx.ss](#custom-ss)
+- [x] [Change Form Settings ](#form-settings)
+- [x] [Set up Google Recaptcha](#set-up-google-recaptcha)
+- [x] [Save & publish the page](#publish-page)
 
-# Create a new page in SilverStripe admin and choose page type "Custom Page with Contact Us Form"
+
+# <a name="choose-page-type"></a>Create a new page in SilverStripe admin and choose page type "Custom Page with Contact Us Form"
 ![choose page type](docs/images/choose-page-type.png "choose page type")
 
-# Choose custom page layout
+# <a name="select-page-layout"></a>Choose custom page layout
 ![Choose custom page layout](docs/images/select-page-layout.png "Choose custom page layout")
 
-# Change Form Settings 
+# <a name="form-settings"></a>Change Form Settings 
 ![Change Form Settings](docs/images/contact-us-form-settings.png "Change Form Settings")
 
-# Set up Google Recaptcha
+# <a name="set-up-google-recaptcha"></a>Set up Google Recaptcha
 ![Set up Google Recaptcha](docs/images/set-up-google-recaptcha.png "Set up Google Recaptcha")
 
 # Change global settings
 ![Change global settings](docs/images/global-settings.png "Change global settings")
 
-# Built-in page layouts
+# <a name="built-in-layouts"></a>Built-in page layouts
 - It will use your page.ss in your own theme folder for global layout. eg. it will use your own header/footer/css/js
 - Built-in page layouts use bootstrap 4.x for grid layout
 ### Content Left, Form right if enabled 
@@ -44,7 +48,7 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 ### 2 Contents per line, 2 lines with Extra Content 1,2,3  
 ![2 Contents per line, 2 lines with Extra Content 1,2,3 ](docs/images/page-layout-005.png "2 Contents per line, 2 lines with Extra Content 1,2,3 ")
 
-# Use your own .ss template file for a custom page layout
+# <a name="custom-ss"></a>Use your own .ss template file for a custom page layout
 - eg. NewProductPage.ss. Please make sure the template file your-theme/templates/includes/xxx.ss already exists!
 - How to start the .ss: Copy vendor/alexstack/silverstripe-custom-page-with-contact-us-form/templates/Includes/CustomLayoutPage1.ss to your-theme/includes, rename it to NewProductPage.ss, change the .ss code inside to what you want. Just keep the variable name the same.
 - Do not forget to run /dev/build?flush=1 first to load your new .ss template
@@ -62,4 +66,4 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form dev-mas
 - Inspired by Fractaslabs' contact-page
 
 # License
-- New BSD
+- BSD-3-Clause
