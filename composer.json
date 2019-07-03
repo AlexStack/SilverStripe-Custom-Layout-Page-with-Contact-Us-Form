@@ -16,7 +16,7 @@
         "silverstripe/cms": "~4.0",
         "silverstripe/framework": "~4.0",
         "silverstripe/vendor-plugin": "^1.0",
-        "alexstack/google-recaptcha-to-any-form": "dev-master"
+        "alexstack/google-recaptcha-to-any-form": "^1.0"
     },
     "autoload": {
         "psr-4": {

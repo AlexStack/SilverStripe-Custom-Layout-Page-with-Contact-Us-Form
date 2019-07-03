@@ -1,4 +1,11 @@
 # SilverStripe Custom Layout Page with Contact Us Form & Google Recaptcha
+[![Latest Stable Version](https://poser.pugx.org/alexstack/silverstripe-custom-page-with-contact-us-form/v/stable)](https://packagist.org/packages/alexstack/silverstripe-custom-page-with-contact-us-form)
+
+[![Latest Unstable Version](https://poser.pugx.org/alexstack/silverstripe-custom-page-with-contact-us-form/v/unstable)](https://packagist.org/packages/alexstack/silverstripe-custom-page-with-contact-us-form)
+
+[![License](https://poser.pugx.org/alexstack/silverstripe-custom-page-with-contact-us-form/license)](https://packagist.org/packages/alexstack/silverstripe-custom-page-with-contact-us-form)
+
+[![Total Downloads](https://poser.pugx.org/alexstack/silverstripe-custom-page-with-contact-us-form/downloads)](https://packagist.org/packages/alexstack/silverstripe-custom-page-with-contact-us-form)
 
 - SilverStripe Custom Layout Page with Contact Us Form & flexible frontend with Google Recaptcha.
 

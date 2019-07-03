@@ -48,6 +48,8 @@ class CustomLayoutPage extends Page
         'ExtraText1' => 'Text',
         'ExtraText2' => 'Text',
         'ExtraText3' => 'Text',
+        'ExtraFeaturedText' => 'Text',
+        'ExtraFeaturedContent' => 'HTMLText',
     ];
 
     private static $has_one = [
@@ -57,6 +59,7 @@ class CustomLayoutPage extends Page
         'ExtraFile1' => File::class,
         'ExtraFile2' => File::class,
         'ExtraFile3' => File::class,
+        'ExtraFeaturedImage' => Image::class,
     ];
 
     private static $table_name = 'SSC_CustomLayoutPage';
@@ -88,18 +91,20 @@ class CustomLayoutPage extends Page
             "2" => "Content Right, Form left if enabled",
             "3" => "Content Top, Form bottom if enabled",
             "4" => "Content Top, 3 cards below with Extra Images 1,2,3",
-            "5" => "2 Contents per line, 2 lines with Extra Content 1,2,3",
+            "5" => "Two Contents per line, two lines with Extra Content 1,2,3",
             "101" => "My Custom Template File xxx.ss",
         );
 
         $fields->addFieldsToTab('Root.ExtraContent', [
-
+            TextField::create('ExtraFeaturedText', 'Extra Featured Text'),
             TextField::create('ExtraText1', 'Extra Text 1'),
             TextField::create('ExtraText2', 'Extra Text 2'),
             TextField::create('ExtraText3', 'Extra Text 3'),
+            UploadField::create('ExtraFeaturedImage', 'Extra Featured Image'),
             UploadField::create('ExtraImage1', 'Extra Image 1'),
             UploadField::create('ExtraImage2', 'Extra Image 2'),
             UploadField::create('ExtraImage3', 'Extra Image 3'),
+            HtmlEditorField::create('ExtraFeaturedContent', 'Extra Featured Content'),
             HtmlEditorField::create('ExtraContent1', 'Extra Content 1'),
             HtmlEditorField::create('ExtraContent2', 'Extra Content 2'),
             HtmlEditorField::create('ExtraContent3', 'Extra Content 3'),
