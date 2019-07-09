@@ -21,7 +21,7 @@ class CustomPageLayoutConfig extends DataExtension
             TextField::create("ContactUsEmail", "Contact Us Notification Email"),
 
             TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('
-            Avoid spam by adding Google Recaptcha v2 to Contact Us Form'),
+            Avoid spam by adding Google Recaptcha v2 or v3 to Contact Us Form'),
             TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Get the key from https://www.google.com/recaptcha')
         ]);                       
     }
