@@ -158,9 +158,9 @@ class CustomLayoutPage extends Page
         $fields->addFieldsToTab('Root.GoogleRecaptcha', [
             CheckboxField::create('GoogleRecaptchaEnable', 'Enable Google Recaptcha')->setDescription(''),
 
-            TextField::create('GoogleRecaptchaCssClass', 'Recaptcha Css Class')->setDescription('Extra css class name for the Google Recaptcha area. eg. mt-4 mb-5'),
+            TextField::create('GoogleRecaptchaCssClass', 'Recaptcha Css Class')->setDescription('Extra css class name for the Google Recaptcha area. eg. mt-4  show-inline-badge mb-5<br/>GoogleRecaptcha v3: Add a string <b>show-inline-badge</b> will display a badge instead of float at right bottom'),
 
-            TextField::create('GoogleRecaptchaNoTickMsg', 'Recaptcha No Tick Msg')->setDescription('Frontend alert message if the end user does not tick the checkbox.'),
+            TextField::create('GoogleRecaptchaNoTickMsg', 'Recaptcha No Tick Msg')->setDescription('GoogleRecaptcha v2: Frontend alert message if not tick the I\'m not a robot checkbox.<br/>GoogleRecaptcha v3: Change the value to <b>v3</b> will use GoogleRecaptcha v3 instead of v2'),
 
             TextField::create('GoogleRecaptchaSiteKey', 'Recaptcha Site Key')->setDescription('Will get the Site Key from <a href="/admin/settings/">the global settings</a> if it is empty'),
             TextField::create('GoogleRecaptchaSecretKey', 'Recaptcha Secret Key')->setDescription('Will get the Secret Key from <a href="/admin/settings/">the global settings</a> if it is empty'),

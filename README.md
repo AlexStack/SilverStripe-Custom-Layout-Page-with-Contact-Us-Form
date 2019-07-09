@@ -31,8 +31,11 @@ composer require alexstack/silverstripe-custom-page-with-contact-us-form
 # <a name="form-settings"></a>Change Form Settings 
 ![Change Form Settings](docs/images/contact-us-form-settings.png "Change Form Settings")
 
-# <a name="set-up-google-recaptcha"></a>Set up Google Recaptcha
-![Set up Google Recaptcha](docs/images/set-up-google-recaptcha.png "Set up Google Recaptcha")
+# <a name="set-up-google-recaptcha"></a>Set up Google Recaptcha v2
+![Set up Google Recaptcha v2](docs/images/set-up-google-recaptcha.png "Set up Google Recaptcha v2")
+
+# <a name="set-up-google-recaptcha-v3"></a>Set up Google Recaptcha v3
+![Set up Google Recaptcha v3](docs/images/set-up-google-recaptcha-v3.png "Set up Google Recaptcha v3")
 
 # Change global settings
 ![Change global settings](docs/images/global-settings.png "Change global settings")
